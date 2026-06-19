@@ -1,0 +1,5 @@
+# pristine pre-enhancement backup (not needed on the live site)
+assets/profile-original.jpg
+# OS / editor cruft
+.DS_Store
+Thumbs.db
