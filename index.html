@@ -9,7 +9,9 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Satya Suresh — Full-Stack Engineer | Secure Software" />
 <meta property="og:description" content="Secure, reliable software across web, mobile, desktop & cloud. Building Convero & Alama. CEH v11." />
-<meta property="og:image" content="assets/profile.jpg" />
+<meta property="og:image" content="https://satya1606.github.io/portfolio/assets/profile-formal.png" />
+<meta property="og:url" content="https://satya1606.github.io/portfolio/" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d0c11'/><text x='50' y='70' font-family='Arial' font-size='56' font-weight='900' fill='%23ff6a3d' text-anchor='middle'>S</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -95,9 +97,8 @@ body.loaded .hero-photo-in{opacity:1;transform:none}
 .hero-photo-in::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, var(--bg) -4%, transparent 32%);pointer-events:none;z-index:1}
 .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;filter:grayscale(.4) contrast(1.06) brightness(1.01);transition:filter .6s var(--ease)}
 @media(hover:hover){.hero-photo-in:hover img{filter:grayscale(0) contrast(1.04)}}
-.hero-photo .head-arc{position:absolute;top:-6%;left:50%;width:78%;transform:translateX(-50%);z-index:2;overflow:visible}
-.hero-photo .head-arc path{stroke-dasharray:340;stroke-dashoffset:340;transition:stroke-dashoffset 1.2s var(--ease-out-expo) .6s}
-body.loaded .hero-photo .head-arc path{stroke-dashoffset:0}
+.hero-photo::before{content:"";position:absolute;inset:0;border:1.5px solid var(--teal);border-radius:46% 46% 16px 16px / 34% 34% 16px 16px;transform:translate(14px,-14px);z-index:0;opacity:.5;pointer-events:none}
+.hero-photo-in{z-index:1}
 .m-star{position:absolute;top:54%;left:-6%;z-index:4;color:var(--teal);font-size:1.5rem;line-height:1;animation:spin 14s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -345,7 +346,6 @@ body.loaded .hero-photo-in{will-change:auto}
       <div class="hero-photo-in">
         <img src="assets/profile.jpg" alt="Portrait of Satya Suresh, Full-Stack Engineer" />
       </div>
-      <svg class="head-arc" viewBox="0 0 200 120" aria-hidden="true"><path d="M18,108 A86,86 0 0 1 182,98" fill="none" stroke="#ff6a3d" stroke-width="2"/></svg>
       <span class="m-star" aria-hidden="true">&#10033;</span>
     </div>
     <div class="hero-marks">
