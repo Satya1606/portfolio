@@ -108,11 +108,11 @@ body.nav-shown header{transform:translateY(0);background:rgba(13,12,17,0.78);bac
 .brand .logo-img{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--border-strong)}
 .brand small{color:var(--muted-2);font-weight:500}
 .nav-links{display:flex;align-items:center;gap:4px}
-.nav-links a{padding:9px 13px;border-radius:var(--radius-xs);font-size:.9rem;color:var(--muted);transition:all .2s var(--ease)}
-.nav-links a:hover{color:var(--text);background:var(--surface)}
+.nav-links a:not(.btn){padding:9px 13px;border-radius:var(--radius-xs);font-size:.9rem;color:var(--muted);transition:all .2s var(--ease)}
+.nav-links a:not(.btn):hover{color:var(--text);background:var(--surface)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font-body);font-weight:600;font-size:.92rem;padding:11px 20px;border-radius:var(--radius-btn);cursor:pointer;border:1px solid transparent;transition:all .25s var(--ease);white-space:nowrap}
-.btn-primary{background:var(--grad-accent);color:var(--ink);box-shadow:var(--shadow-btn)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-btn-hover)}
+.btn-primary{background:var(--grad-accent);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.06)}
 .btn-primary .btn-arr{transition:transform .25s var(--ease)}
 .btn-primary:hover .btn-arr,.btn-primary:focus-visible .btn-arr{transform:translateX(3px)}
 .btn-ghost{border-color:var(--border);color:var(--text);background:var(--surface)}
@@ -337,8 +337,43 @@ footer{border-top:1px solid var(--border);padding:30px 0}
   .giant .ln-i,.title-mask>span{transform:none}
   .hero-photo-in{opacity:1;transform:none}
   .hero-marks>*{opacity:1;transform:none}
+  .stat,.sec-no,.feat-side .big-idx{opacity:1!important;transform:none!important}
   .curtain{display:none}
 }
+
+/* ===================== v2 REDESIGN ===================== */
+/* gradient hero word */
+.giant .grad{background:var(--grad-accent);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* big faint outlined section numeral behind each header */
+.sec-head{position:relative}
+.sec-head>*{position:relative;z-index:1}
+.sec-no{position:absolute;top:-.46em;left:-.02em;z-index:0;font-family:var(--font-giant);font-weight:900;font-size:clamp(3.5rem,9vw,7rem);line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.055);pointer-events:none;user-select:none}
+
+/* stats / credentials band */
+.stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-2)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.stat{padding:clamp(28px,4vw,46px) 26px;border-right:1px dashed var(--border);opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.stat.visible{opacity:1;transform:none}
+.stat:nth-child(2){transition-delay:.08s}.stat:nth-child(3){transition-delay:.16s}.stat:nth-child(4){transition-delay:.24s}
+.stat:last-child{border-right:0}
+.stat .n{font-family:var(--font-giant);font-weight:900;font-size:clamp(2.3rem,4.6vw,3.4rem);line-height:1;letter-spacing:-.03em;color:var(--text)}
+.stat .n .u{color:var(--accent)}
+.stat .l{margin-top:12px;font-family:var(--font-mono);font-size:.72rem;letter-spacing:var(--ls-tag);text-transform:uppercase;color:var(--muted)}
+@media(max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2n){border-right:0}.stat:nth-child(-n+2){border-bottom:1px dashed var(--border)}}
+@media(max-width:420px){.stats-grid{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px dashed var(--border)}.stat:last-child{border-bottom:0}}
+
+/* work: featured-first + 3-up grid */
+.work-featured{margin-bottom:24px}
+.card.feature .feat-in{display:grid;grid-template-columns:1.35fr .65fr;gap:34px;align-items:center}
+.card.feature .feat-main h3{font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:8px}
+.card.feature .feat-main .sub{font-size:.95rem;margin-bottom:16px}
+.card.feature .feat-main p{font-size:1.04rem;max-width:52ch}
+.feat-side{display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:14px;border-left:1px dashed var(--border);padding-left:30px}
+.feat-side .big-idx{font-family:var(--font-giant);font-weight:900;font-size:clamp(3rem,6vw,5rem);line-height:.9;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px var(--border-strong)}
+.feat-side .tech{justify-content:flex-end}
+.work-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;perspective:1000px}
+@media(max-width:880px){.card.feature .feat-in{grid-template-columns:1fr;gap:22px}.feat-side{align-items:flex-start;text-align:left;border-left:0;border-top:1px dashed var(--border);padding-left:0;padding-top:18px;flex-direction:row;flex-wrap:wrap;align-items:center;gap:18px}.feat-side .tech{justify-content:flex-start}.work-grid-3{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -366,7 +401,7 @@ footer{border-top:1px solid var(--border);padding:30px 0}
     <h1 class="giant">
       <span class="ln"><span class="ln-i">FULL-STACK</span></span>
       <span class="ln"><span class="ln-i">ENGINEER <span class="amp">&amp;</span></span></span>
-      <span class="ln"><span class="ln-i">SECURE</span></span>
+      <span class="ln"><span class="ln-i"><span class="grad">SECURE</span></span></span>
       <span class="ln"><span class="ln-i">SOFTWARE</span></span>
     </h1>
     <div class="hero-photo">
@@ -396,10 +431,20 @@ footer{border-top:1px solid var(--border);padding:30px 0}
 <!-- MARQUEE -->
 <div class="marquee" aria-hidden="true"><div class="marquee-track" id="mq1"></div></div>
 
+<!-- STATS -->
+<section class="stats" aria-label="At a glance">
+  <div class="stats-grid">
+    <div class="stat reveal"><div class="n">04</div><div class="l">Flagship platforms</div></div>
+    <div class="stat reveal"><div class="n">CEH<span class="u">&nbsp;v11</span></div><div class="l">Certified Ethical Hacker</div></div>
+    <div class="stat reveal"><div class="n">02</div><div class="l">Solo builds — Convero &amp; Alama</div></div>
+    <div class="stat reveal"><div class="n">Nairobi</div><div class="l">Based in Kenya · open worldwide</div></div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about" class="section-pad">
   <div class="wrap">
-    <div class="reveal-clip"><div class="eyebrow"><span class="ord">(01)</span> About me</div>
+    <div class="reveal-clip sec-head"><span class="sec-no" aria-hidden="true">01</span><div class="eyebrow"><span class="ord">(01)</span> About me</div>
     <h2 class="title title-mask"><span>Software businesses rely on.</span></h2></div>
     <div class="about-grid">
       <div class="about-text">
@@ -429,14 +474,30 @@ footer{border-top:1px solid var(--border);padding:30px 0}
 <!-- WORK -->
 <section id="work" class="section-pad">
   <div class="wrap">
-    <div class="reveal-clip"><div class="eyebrow"><span class="ord">(02)</span> Selected work</div>
+    <div class="reveal-clip sec-head"><span class="sec-no" aria-hidden="true">02</span><div class="eyebrow"><span class="ord">(02)</span> Selected work</div>
     <h2 class="title title-mask"><span>Things I've built.</span></h2></div>
     <p class="section-intro reveal d1">National-scale platforms built at SecurePath and products I'm building independently. Some client work is under NDA and shown at a high level.</p>
-    <div class="work-grid">
-      <article class="card reveal"><div class="cidx">(01)</div><div class="card-top"><span class="tag-ctx">Personal · Solo</span><span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>Private</span></div><h3>Convero</h3><div class="sub">Omnichannel AI Sales &amp; Voice Platform</div><p>One AI sales rep across WhatsApp, Instagram &amp; Facebook Messenger — plus an AI voice receptionist that qualifies leads and books demos for small businesses.</p><div class="tech"><span>Python · FastAPI</span><span>PostgreSQL</span><span>Next.js · React</span><span>AI / LLM</span></div></article>
-      <article class="card reveal d1"><div class="cidx">(02)</div><div class="card-top"><span class="tag-ctx">Personal · Solo</span><span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>Private</span></div><h3>Alama</h3><div class="sub">Offline-First School Assessment Platform</div><p>A school-based assessment platform for Kenya's CBE curriculum that works fully offline and syncs when back online — web, PWA and native Android from one codebase.</p><div class="tech"><span>React</span><span>Spring Boot</span><span>Capacitor · Android</span><span>PWA</span></div></article>
-      <article class="card reveal"><div class="cidx">(03)</div><div class="card-top"><span class="tag-ctx">SecurePath · Team</span><span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>Confidential</span></div><h3>EvalPro</h3><div class="sub">National-Scale E-Marking &amp; Examiner Platform</div><p>A cloud-native platform that runs large-scale digital marking — automated script allocation, an examiner hierarchy and quality controls — built to handle national exam volumes.</p><div class="tech"><span>Java · Spring Boot</span><span>React</span><span>PostgreSQL · Redis</span><span>DevOps</span></div></article>
-      <article class="card reveal d1"><div class="cidx">(04)</div><div class="card-top"><span class="tag-ctx">SecurePath · National</span><span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>Confidential</span></div><h3>Secure Certificate Platform</h3><div class="sub">Cryptographic Issuance &amp; Verification</div><p>A tamper-evident system for issuing and verifying official certificates at national scale, using cryptographic signing and secure QR verification — desktop, web and Android.</p><div class="tech"><span>Java</span><span>Android</span><span>Desktop</span><span>Cryptography</span></div></article>
+    <div class="work-featured">
+      <article class="card feature reveal">
+        <div class="feat-in">
+          <div class="feat-main">
+            <div class="card-top"><span class="tag-ctx">Personal · Solo</span><span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>Private</span></div>
+            <h3>Convero</h3>
+            <div class="sub">Omnichannel AI Sales &amp; Voice Platform</div>
+            <p>One AI sales rep across WhatsApp, Instagram &amp; Facebook Messenger — plus an AI voice receptionist that qualifies leads and books demos for small businesses.</p>
+            <div class="tech"><span>Python · FastAPI</span><span>PostgreSQL</span><span>Next.js · React</span><span>AI / LLM</span></div>
+          </div>
+          <div class="feat-side">
+            <div class="big-idx" aria-hidden="true">01</div>
+            <span class="tag-ctx">Featured build</span>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="work-grid-3">
+      <article class="card reveal"><div class="cidx">(02)</div><div class="card-top"><span class="tag-ctx">Personal · Solo</span><span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>Private</span></div><h3>Alama</h3><div class="sub">Offline-First School Assessment Platform</div><p>A school-based assessment platform for Kenya's CBE curriculum that works fully offline and syncs when back online — web, PWA and native Android from one codebase.</p><div class="tech"><span>React</span><span>Spring Boot</span><span>Capacitor · Android</span><span>PWA</span></div></article>
+      <article class="card reveal d1"><div class="cidx">(03)</div><div class="card-top"><span class="tag-ctx">SecurePath · Team</span><span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>Confidential</span></div><h3>EvalPro</h3><div class="sub">National-Scale E-Marking &amp; Examiner Platform</div><p>A cloud-native platform that runs large-scale digital marking — automated script allocation, an examiner hierarchy and quality controls — built to handle national exam volumes.</p><div class="tech"><span>Java · Spring Boot</span><span>React</span><span>PostgreSQL · Redis</span><span>DevOps</span></div></article>
+      <article class="card reveal d2"><div class="cidx">(04)</div><div class="card-top"><span class="tag-ctx">SecurePath · National</span><span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>Confidential</span></div><h3>Secure Certificate Platform</h3><div class="sub">Cryptographic Issuance &amp; Verification</div><p>A tamper-evident system for issuing and verifying official certificates at national scale, using cryptographic signing and secure QR verification — desktop, web and Android.</p><div class="tech"><span>Java</span><span>Android</span><span>Desktop</span><span>Cryptography</span></div></article>
     </div>
     <div class="badge-wrap reveal">
       <a class="spin-badge" href="#contact" aria-label="Get in touch">
@@ -450,7 +511,7 @@ footer{border-top:1px solid var(--border);padding:30px 0}
 <!-- SKILLS -->
 <section id="skills" class="section-pad">
   <div class="wrap">
-    <div class="reveal-clip"><div class="eyebrow"><span class="ord">(03)</span> Skills &amp; stack</div>
+    <div class="reveal-clip sec-head"><span class="sec-no" aria-hidden="true">03</span><div class="eyebrow"><span class="ord">(03)</span> Skills &amp; stack</div>
     <h2 class="title title-mask"><span>The tools I build with.</span></h2></div>
   </div>
   <div class="icon-marquee" aria-hidden="true"><div class="icon-track" id="iconTrack"></div></div>
@@ -469,7 +530,7 @@ footer{border-top:1px solid var(--border);padding:30px 0}
 <!-- SERVICES -->
 <section id="services" class="section-pad">
   <div class="wrap">
-    <div class="reveal-clip"><div class="eyebrow"><span class="ord">(04)</span> What I can do for you</div>
+    <div class="reveal-clip sec-head"><span class="sec-no" aria-hidden="true">04</span><div class="eyebrow"><span class="ord">(04)</span> What I can do for you</div>
     <h2 class="title title-mask"><span>Services</span></h2></div>
     <div class="serv-list reveal">
       <div class="serv-row"><span class="num">01</span><h3>Web Applications</h3><p>Fast, responsive web apps &amp; dashboards — MVP to production SaaS — with React, Next.js &amp; Spring Boot.</p><span class="arr">&#8599;</span></div>
